@@ -5,16 +5,14 @@ import 'ace-builds/src-noconflict/mode-python';
 import 'ace-builds/src-noconflict/ext-modelist'
 
 import 'ace-builds/src-noconflict/theme-monokai';
-import Loader from './Loader';
+// import Loader from './Loader';
 const CodeEditor = () => {
     const data = ["c++", "python", "javascript"]
     const [message, setMessage] = useState('');
     const [value, setValue] = useState('');
-    const [lang1, setLang1] = useState('c++');
-    const [lang2, setLang2] = useState("c++");
-    const [loader, setLoader] = useState(true);
-    // const [lang, setLang] = useState(python);
-    // const [secondlang, setSecondlang] = useState(javascript);
+    const [firstlang, setFirstlang] = useState("python");
+    const [secondlang, setSecondlang] = useState("javascript");
+    const [index, setIndex] = useState(0);
 
     const handleCodeChange = (newCode) => {
         setValue(newCode);
@@ -27,33 +25,32 @@ const CodeEditor = () => {
             method: "POST",
             body: JSON.stringify({
                 message: value,
-                codelang1: "python",
-                codelang2: lang1
+                codelang1: firstlang,
+                codelang2: secondlang
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         }
-
         try {
-            const response = await fetch('http://localhost:8080/completions', options)
+            const response = await fetch('https://codebreakdown-backend.onrender.com/completions', options)
             const data = await response.json()
             setMessage(data.choices[0].message.content)
-            setLoader(true)
+            setIndex(prev => prev + 1)
+            console.log("THe try left is", index)
             console.log("response done")
         }
 
         catch (error) {
+            setIndex(prev => prev + 1)
+            console.log("THe try left is", index)
             console.log(error)
         }
 
         console.log(message)
+        console.log(index)
     }
 
-    // const getLang = (e) => {
-    //     setLang1(e.target.value)
-    //     console.log("this is lang 1", lang1)
-    // }
     return (
         <>
             <h1>Code Convertor Using chatgpt</h1>
@@ -61,10 +58,8 @@ const CodeEditor = () => {
                 <div>
                     <h2>Select lang to convert from </h2>
                     <select onChange={(e) => {
-                        const new1 = e.target.value;
-                        console.log("current value", new1)
-                        setLang1(new1)
-                        console.log("this is the value in usestate", lang1)
+                        // setting up the value of the language
+                        setFirstlang(e.target.value);
                     }}>
                         {data.map((element, index) => <option key={index} >
                             {element}
@@ -74,33 +69,36 @@ const CodeEditor = () => {
                 <div>
                     <h2>select lang to convert to </h2>
                     <select onChange={(e) => {
-                        const new2 = e.target.value;
-                        console.log("current value", new2)
-                        setLang2(new2)
-                        console.log("this is the value in usestate", lang2)
+                        // this is written to set the value of the second language
+                        setSecondlang(e.target.value)
                     }}>
                         {data.map((data, index) => <option key={index}>{data}</option>)}
                     </select>
                 </div>
             </div>
-            <div className='flex'>
-                <AceEditor
-                    mode="python"
-                    theme="monokai"
-                    onChange={handleCodeChange}
-                    value={value}
-                    name="UNIQUE_ID_OF_DIV"
-                    editorProps={{ $blockScrolling: true }}
-                />
-                <div onClick={getMessage}>Submit</div>
-                <AceEditor
-                    mode="javascript"
-                    theme="monokai"
-                    value={message}
-                    name="UNIQUE_ID_OF_DIV"
-                    editorProps={{ $blockScrolling: true }}
-                    readOnly={{ readOnly: true }}
-                />
+            <div>
+                {
+                    index < 5 ?
+                        <div className='flex'>
+                            <AceEditor
+                                mode="python"
+                                theme="monokai"
+                                onChange={handleCodeChange}
+                                value={value}
+                                name="UNIQUE_ID_OF_DIV"
+                                editorProps={{ $blockScrolling: true }}
+                            />
+                            <div onClick={getMessage}>Submit</div>
+                            <AceEditor
+                                mode="javascript"
+                                theme="monokai"
+                                value={message}
+                                name="UNIQUE_ID_OF_DIV"
+                                editorProps={{ $blockScrolling: true }}
+                                readOnly={{ readOnly: true }}
+                            />
+                        </div> : <h1>Login in to try More</h1>
+                }
             </div>
 
         </>
