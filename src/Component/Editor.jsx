@@ -87,7 +87,7 @@ const CodeEditor = () => {
                                 name="UNIQUE_ID_OF_DIV"
                                 editorProps={{ $blockScrolling: true }}
                             />
-                            <div onClick={getMessage}>Submit</div>
+                            <button onClick={getMessage} className='h-[10vw]'>Submit</button>
                             <AceEditor
                                 mode="javascript"
                                 theme="monokai"
