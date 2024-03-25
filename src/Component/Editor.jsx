@@ -53,9 +53,8 @@ const CodeEditor = () => {
 
     return (
         <>
-            <h1>Code Convertor Using chatgpt</h1>
-            <div>
-                <div>
+            <div className='text-white'>
+                <div className=''>
                     <h2>Select lang to convert from </h2>
                     <select onChange={(e) => {
                         // setting up the value of the language
