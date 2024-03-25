@@ -33,9 +33,9 @@ const Landing = () => {
                     <img src={Logo} alt="" className="h-[35rem]" />
                 </div>
                 <div className="w-[100%] h-[100%] text-[25px] flex flex-col py-[150px] justify-center">
-                    <h1>Convert as <br></br>fast as you <br></br> can think.</h1>
+                    <h1 className="font-bold">Convert as <br></br>fast as you <br></br> can think.</h1>
                     <p className="font-sans">Where the design process finds <br></br>structure and transparency</p>
-                    <Link to="/convert"><button className="w-[300px] text-[20px] bg-black text-white">Get Started</button></Link>
+                    <Link to="/convert"><button className="w-[300px] text-[20px] bg-black text-white font-bold">Get Started</button></Link>
                 </div>
             </div>
         </div>
