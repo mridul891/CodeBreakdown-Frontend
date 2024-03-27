@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Logo from "../assets/landing.png"
 import { Link } from 'react-router-dom'
 const Landing = () => {
@@ -23,8 +24,10 @@ const Landing = () => {
                         </ul>
                     </div>
                     <div>
-                        <button className="mr-10 font-[poppins]  bg-black text-white">Log in</button>
-                        <button className="mr-10 font-[poppins]  bg-black text-white">Sign in</button>
+                        <Link to='/login'>
+                            <Button className="mr-10 font-[poppins]  bg-black text-white">Log in</Button>
+                        </Link>
+                        <Button className="mr-10 font-[poppins]  bg-black text-white">Sign in</Button>
                     </div>
                 </nav>
             </div>
@@ -33,9 +36,9 @@ const Landing = () => {
                     <img src={Logo} alt="" className="h-[35rem]" />
                 </div>
                 <div className="w-[100%] h-[100%] text-[25px] flex flex-col py-[150px] justify-center">
-                    <h1 className="font-bold">Convert as <br></br>fast as you <br></br> can think.</h1>
-                    <p className="font-sans">Where the design process finds <br></br>structure and transparency</p>
-                    <Link to="/convert"><button className="w-[300px] text-[20px] bg-black text-white font-bold">Get Started</button></Link>
+                    <h1 className="font-bold mb-1">Convert as <br></br>fast as you <br></br> can think.</h1>
+                    <p className="font-sans mb-1">Where the design process finds <br></br>structure and transparency</p>
+                    <Link to="/convert"><Button className="w-[300px] text-[20px] bg-black text-white font-bold">Get Started</Button></Link>
                 </div>
             </div>
         </div>

@@ -3,6 +3,8 @@ import './App.css'
 import Landing from './Component/Landing'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { LoginForm } from './Component/Login';
+
 function App() {
   return (
     <BrowserRouter>
@@ -10,6 +12,7 @@ function App() {
         <Route path="/" element={<Landing />} >
         </Route>
         <Route path="/convert" element={<CodeEditor />} />
+        <Route path="/login" element={<LoginForm />} />
       </Routes>
     </BrowserRouter>
   )
