@@ -33,7 +33,7 @@ const CodeEditor = () => {
             }
         }
         try {
-            const response = await fetch('https://codebreakdown-backend.onrender.com/completions', options)
+            const response = await fetch('https://codebreakdown-backend.onrender.com/completions/convert', options)
             const data = await response.json()
             setMessage(data.choices[0].message.content)
             setIndex(prev => prev + 1)
@@ -43,7 +43,7 @@ const CodeEditor = () => {
 
         catch (error) {
             setIndex(prev => prev + 1)
-            console.log("THe try left is", index)
+            console.log("The try left is", index)
             console.log(error)
         }
 
