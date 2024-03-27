@@ -10,6 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} >
+          <Route index element={<Landing />} />
         </Route>
         <Route path="/convert" element={<CodeEditor />} />
         <Route path="/login" element={<LoginForm />} />

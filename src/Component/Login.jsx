@@ -26,9 +26,14 @@ export const LoginForm = () => {
         }
         try {
             const respose = await fetch('http://localhost:8080/users/signin', options)
-            if (respose) {
-                navigate('/convert')
+            const data = await respose.json()
+            console.log(data)
+            if (!data.message) {
+                // console.log(data.message)
+                navigate('/')
             }
+            console.log(data.message)
+
         } catch (error) {
             console.log(error)
         }
