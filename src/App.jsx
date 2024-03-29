@@ -5,8 +5,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { LoginForm } from './Component/Login';
 import { SignupForm } from './Component/Signup';
+import { useSelector } from 'react-redux';
+import { selectUser } from './feature/userSlice';
 
 function App() {
+  const user = useSelector(selectUser);
   return (
     <BrowserRouter>
       <Routes>

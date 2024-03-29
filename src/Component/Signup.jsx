@@ -30,7 +30,10 @@ export const SignupForm = () => {
       const data = await respose.json()
       console.log(data);
       if (data) {
-        navigate('/login')
+        let messages = document.querySelector(".div")
+        let hm1 = document.querySelector('.p');
+        hm1.innerText = data.message;
+        messages.append(hm1)
       }
     } catch (error) {
       console.log(error)
@@ -50,17 +53,27 @@ export const SignupForm = () => {
           <div>
             <h1 className="text-3xl font-bold text-black text-center mb-4 cursor-pointer">Create Account</h1>
             <p className="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Create an account to enjoy all the services for free!</p>
+            <div className="div">
+              <p className="p text-[#FF0000] text-center mb-2"></p>
+            </div>
           </div>
           <div className="space-y-4">
             <input type="text" placeholder="name" {...register("name", { required: true })} className="block text-sm py-3 px-4 rounded-xl w-full border outline-purple-500" />
+            {errors.name && <span className="text-[#FF0000]">*This field is required</span>}
             <input type="email" placeholder="Email Addres" {...register("email", { required: true })} className="block text-sm py-3 px-4 rounded-xl w-full border outline-purple-500" />
+            {errors.email && <span className="text-[#FF0000]">*This field is required</span>}
             <input type="password" placeholder="Password" {...register("password", { required: true })} className="block text-sm py-3 px-4 rounded-xl w-full border outline-purple-500" />
+            {errors.password && <span className="text-[#FF0000]">*This field is required</span>}
+
             {/* {errors.exampleRequired && <span>This field is required</span> */}
           </div>
           <div className="text-center mt-6">
             <button className="w-full py-2  text-xl text-white bg-purple-400 rounded-xl hover:bg-purple-500 transition-all">Register</button>
-            <p className="mt-4 text-sm"> Have An Account? <Link to='/signup'>
-              <span className="underline  cursor-pointer"> Login</span></Link></p>
+            <p className="mt-4 text-sm"> Have An Account?
+              <Link to='/login'>
+                <span className="underline cursor-pointer"> Login</span>
+              </Link>
+            </p>
           </div>
         </form>
         <div className="w-40 h-40 absolute bg-purple-300 rounded-full top-0 right-12 hidden md:block"></div>
