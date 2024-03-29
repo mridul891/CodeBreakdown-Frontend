@@ -47,7 +47,6 @@ export const LoginForm = () => {
                     loggedIn: true
                 }))
                 navigate('/')
-
             }
             let messages = document.querySelector(".div")
             let hm1 = document.querySelector('.p');

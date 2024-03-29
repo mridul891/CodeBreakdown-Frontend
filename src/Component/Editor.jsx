@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AceEditor from 'react-ace';
-import 'ace-builds/src-noconflict/mode-python';
+// import './constant.js'
 // import 'ace-builds/src-noconflict/mode';
 import 'ace-builds/src-noconflict/ext-modelist'
 
@@ -58,55 +58,57 @@ const CodeEditor = () => {
 
     return (
         <>
-            {user ? <div className='bg-[#000] h-[100vh] w-[100vw]'>
-                <div className='text-white'>
+            {user
+                ? <div className='bg-[#000] h-[100vh] w-[100vw]'>
                     <div className=''>
-                        <h2>Select lang to convert from </h2>
-                        <select onChange={(e) => {
-                            // setting up the value of the language
-                            setFirstlang(e.target.value);
-                        }}>
-                            {data.map((element, index) => <option key={index} >
-                                {element}
-                            </option>)}
-                        </select>
+                        <div className=''>
+                            <h2 className='text-white'>Select lang to convert from </h2>
+                            <select onChange={(e) => {
+                                // setting up the value of the language
+                                setFirstlang(e.target.value);
+                            }}>
+                                {data.map((element, index) => <option key={index} >
+                                    {element}
+                                </option>)}
+                            </select>
+                        </div>
+                        <div>
+                            <h2 className='text-white'>select lang to convert to </h2>
+                            <select onChange={(e) => {
+                                // this is written to set the value of the second language
+                                setSecondlang(e.target.value)
+                            }}>
+                                {data.map((data, index) => <option key={index}>{data}</option>)}
+                            </select>
+                        </div>
                     </div>
                     <div>
-                        <h2>select lang to convert to </h2>
-                        <select onChange={(e) => {
-                            // this is written to set the value of the second language
-                            setSecondlang(e.target.value)
-                        }}>
-                            {data.map((data, index) => <option key={index}>{data}</option>)}
-                        </select>
+
+
+                        <div className='flex'>
+                            <AceEditor
+                                mode='firstlang'
+                                theme="monokai"
+                                onChange={handleCodeChange}
+                                value={value}
+                                name="UNIQUE_ID_OF_DIV"
+                                editorProps={{ $blockScrolling: true }}
+                            />
+                            <button onClick={getMessage} className='h-[10vw]'>Submit</button>
+                            <AceEditor
+                                mode="javascript"
+                                theme="monokai"
+                                value={message}
+                                name="UNIQUE_ID_OF_DIV"
+                                editorProps={{ $blockScrolling: true }}
+
+                            />
+                        </div>
+
                     </div>
-                </div>
-                <div>
-                    {
-                        index < 5 ?
-                            <div className='flex'>
-                                <AceEditor
-                                    mode="python"
-                                    theme="monokai"
-                                    onChange={handleCodeChange}
-                                    value={value}
-                                    name="UNIQUE_ID_OF_DIV"
-                                    editorProps={{ $blockScrolling: true }}
-                                />
-                                <button onClick={getMessage} className='h-[10vw]'>Submit</button>
-                                <AceEditor
-                                    mode="javascript"
-                                    theme="monokai"
-                                    value={message}
-                                    name="UNIQUE_ID_OF_DIV"
-                                    editorProps={{ $blockScrolling: true }}
 
-                                />
-                            </div> : <h1>Login in to try More</h1>
-                    }
                 </div>
-
-            </div> : <Please />}
+                : <Please />}
         </>
     );
 };
