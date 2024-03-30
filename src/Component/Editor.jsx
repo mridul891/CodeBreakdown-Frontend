@@ -87,7 +87,7 @@ const CodeEditor = () => {
 
                         <div className='flex'>
                             <AceEditor
-                                mode='firstlang'
+                                mode='python'
                                 theme="monokai"
                                 onChange={handleCodeChange}
                                 value={value}
