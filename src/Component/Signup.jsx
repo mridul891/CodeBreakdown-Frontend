@@ -7,8 +7,7 @@ export const SignupForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm()
 
   const navigate = useNavigate()
@@ -68,7 +67,7 @@ export const SignupForm = () => {
             {/* {errors.exampleRequired && <span>This field is required</span> */}
           </div>
           <div className="text-center mt-6">
-            <button className="w-full py-2  text-xl text-white bg-purple-400 rounded-xl hover:bg-purple-500 transition-all">Register</button>
+            <input className="w-full py-2 font-bold text-xl text-white bg-purple-400 rounded-xl hover:bg-purple-500 transition-all" value="Register" type="submit" />
             <p className="mt-4 text-sm"> Have An Account?
               <Link to='/login'>
                 <span className="underline cursor-pointer"> Login</span>

@@ -8,6 +8,8 @@ import { SignupForm } from './Component/Signup';
 import { useSelector } from 'react-redux';
 import { selectUser } from './feature/userSlice';
 
+import Generator from './Component/Generator';
+
 function App() {
   const user = useSelector(selectUser);
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/convert" element={<CodeEditor />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
+        <Route path="/generate" element={<Generator />} />
       </Routes>
     </BrowserRouter>
   )

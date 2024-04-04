@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "@/feature/userSlice";
 const Landing = () => {
     const user = useSelector(selectUser);
+    
     return (
         <div className="h-[100%] w-[100vw] bg-[#FCF7F2] lg:h-[100vh] flex flex-col ">
             <nav className="flex flex-col justify-start lg:flex-row lg:items-center lg:justify-between  lg:mx-10 lg:py-5  ">
@@ -19,10 +20,8 @@ const Landing = () => {
                 </svg>
                 <div>
                     <ul className="flex">
-                        <li className="mr-10 font-[poppins]">Product</li>
-                        <li className="mr-10 font-[poppins]">Features</li>
-                        <li className="mr-10 font-[poppins]">About us </li>
-                        <li className="mr-10 font-[poppins]">Resources</li>
+                        <li className="mr-10 font-[poppins] text-black"><a href="/convert" className="text-black">Convert</a></li>
+                        <li className="mr-10 font-[poppins]"><a href="/generate" className="text-black">Generate</a></li>
                     </ul>
                 </div>
                 <div>

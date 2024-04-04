@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 // import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import { useLocalStorage } from "./useLocalStorage"
 // import loggedin from './../redux/slices/loggedin/index';
 
 
@@ -15,13 +16,14 @@ export const LoginForm = () => {
     const {
         register,
         handleSubmit,
-        watch,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm()
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector(selectUser);
+
+
     const onSubmit = async (data) => {
         console.log("the oobject is ", data)
 
@@ -39,6 +41,7 @@ export const LoginForm = () => {
             const respose = await fetch('https://codebreakdown-backend.onrender.com/users/signin', options)
             const data = await respose.json()
             console.log(data)
+            // If the use succefully loged in 
             if (!data.message) {
                 // console.log(data.message)
                 dispatch(login({
@@ -48,6 +51,7 @@ export const LoginForm = () => {
                 }))
                 navigate('/')
             }
+            //if the user Fails to login
             let messages = document.querySelector(".div")
             let hm1 = document.querySelector('.p');
             hm1.innerText = data.message;
@@ -107,7 +111,7 @@ export const LoginForm = () => {
                                 {errors.password && <span className="text-[#FF0000]">*This field is required</span>}
                             </div>
                             <div className="text-center mt-6">
-                                <button className="w-full py-2  text-xl text-white bg-purple-400 rounded-xl hover:bg-purple-500 transition-all">Login </button>
+                                <input className="w-full py-2 font-bold text-xl text-white bg-purple-400 rounded-xl hover:bg-purple-500 transition-all" type="submit" value="Login" />
                                 <p className="mt-4 text-sm">Doesn&apos;t Have An Account? <Link to='/signup'>
                                     <span className="underline  cursor-pointer"> Register</span></Link></p>
                             </div>
