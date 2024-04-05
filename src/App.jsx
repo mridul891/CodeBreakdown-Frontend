@@ -21,7 +21,6 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/generate" element={<Generator />} />
-        <Route path="/convert" element={<Editor />} />
       </Routes>
     </BrowserRouter>
   )
