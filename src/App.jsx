@@ -9,7 +9,7 @@ import { SignupForm } from './Component/Signup';
 // import { selectUser } from './feature/userSlice';
 
 import Generator from './Component/Generator';
-import { Editor } from 'ace-builds';
+
 
 function App() {
 
