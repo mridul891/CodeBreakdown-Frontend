@@ -29,16 +29,16 @@ export const LoginForm = () => {
 
         const options = {
             method: "POST",
-            body: {
+            body: JSON.stringify({
                 email: data.email,
                 password: data.password
-            },
+            }),
             headers: {
                 "Content-Type": "application/json"
             }
         }
         try {
-            const respose = await fetch('http://localhost:8080/users/signin', options)
+            const respose = await fetch('https://codebreakdown-backend.onrender.com/users/signin', options)
             const data = await respose.json()
             console.log(data)
             // If the use succefully loged in 
