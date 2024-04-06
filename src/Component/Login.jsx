@@ -29,10 +29,10 @@ export const LoginForm = () => {
 
         const options = {
             method: "POST",
-            body: JSON.stringify({
+            body: {
                 email: data.email,
                 password: data.password
-            }),
+            },
             headers: {
                 "Content-Type": "application/json"
             }
