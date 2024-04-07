@@ -57,11 +57,11 @@ export const SignupForm = () => {
             </div>
           </div>
           <div className="space-y-4">
-            <input type="text" placeholder="name" {...register("name", { required: true })} className="block text-sm py-3 px-4 rounded-xl w-full border outline-purple-500" />
+            <input type="text" placeholder="name" {...register("name", { required: true })} className="block text-sm bg-[#eaeaf0] py-3 px-4 rounded-xl w-full border outline-purple-500" />
             {errors.name && <span className="text-[#FF0000]">*This field is required</span>}
-            <input type="email" placeholder="Email Addres" {...register("email", { required: true })} className="block text-sm py-3 px-4 rounded-xl w-full border outline-purple-500" />
+            <input type="email" placeholder="Email Addres" {...register("email", { required: true })} className="block bg-[#eaeaf0] text-sm py-3 px-4 rounded-xl w-full border outline-purple-500" />
             {errors.email && <span className="text-[#FF0000]">*This field is required</span>}
-            <input type="password" placeholder="Password" {...register("password", { required: true })} className="block text-sm py-3 px-4 rounded-xl w-full border outline-purple-500" />
+            <input type="password" placeholder="Password" {...register("password", { required: true })} className="block bg-[#eaeaf0] text-sm py-3 px-4 rounded-xl w-full border outline-purple-500" />
             {errors.password && <span className="text-[#FF0000]">*This field is required</span>}
 
             {/* {errors.exampleRequired && <span>This field is required</span> */}

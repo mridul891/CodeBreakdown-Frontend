@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import Logo from "../assets/landing.png"
 import { Link } from 'react-router-dom'
-import { useSelector } from "react-redux";
-import { selectUser } from "@/feature/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { login, selectUser } from "@/feature/userSlice";
+import { useEffect } from "react";
 const Landing = () => {
     const user = useSelector(selectUser);
-
+    const dispatch = useDispatch()
+    
     return (
         <div className="h-[100%] w-[100vw] bg-[#FCF7F2] lg:h-[100vh] flex flex-col ">
             <nav className="flex flex-col justify-start lg:flex-row lg:items-center lg:justify-between  lg:mx-10 lg:py-5  ">

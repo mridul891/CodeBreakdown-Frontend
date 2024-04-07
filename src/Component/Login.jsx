@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 // import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { useLocalStorage } from "./useLocalStorage"
+
+
 // import loggedin from './../redux/slices/loggedin/index';
+
 
 
 
@@ -13,16 +15,27 @@ import { useLocalStorage } from "./useLocalStorage"
 
 export const LoginForm = () => {
 
+
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
     } = useForm()
 
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector(selectUser);
 
+    const setCookie = (name, value, days) => {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
 
     const onSubmit = async (data) => {
         console.log("the oobject is ", data)
@@ -38,16 +51,25 @@ export const LoginForm = () => {
             }
         }
         try {
-            const respose = await fetch('https://codebreakdown-backend.onrender.com/users/signin', options)
-            const data = await respose.json()
+            const token = document.cookie;
+            if (token) {
+                dispatch(login({
+                    isauthenticated: true
+                }))
+                navigate('/')
+            }
+            const response = await fetch('https://codebreakdown-backend.onrender.com/users/signin', options)
+            const data = await response.json()
             console.log(data)
+
             // If the use succefully loged in 
             if (!data.message) {
                 // console.log(data.message)
+                setCookie("values", data.token, 7);
                 dispatch(login({
                     email: data.email,
                     password: data.password,
-                    loggedIn: true
+                    isauthenticated: true
                 }))
                 navigate('/')
             }
@@ -62,6 +84,8 @@ export const LoginForm = () => {
         }
 
     }
+
+
     // watch input value by passing the name of it
     const okSubmit = async () => {
         dispatch(logout())
@@ -105,9 +129,9 @@ export const LoginForm = () => {
                                 </div>
                             </div>
                             <div className="space-y-4">
-                                <input type="email" placeholder="Email Addres" {...register("email", { required: true })} className="block text-sm py-3 px-4 rounded-lg w-full border outline-purple-500" />
+                                <input type="email" placeholder="Email Address" {...register("email", { required: true })} className="block text-sm py-3 bg-[#eaeaf0] px-4 rounded-lg w-full border outline-purple-500" />
                                 {errors.email && <span className="text-[#FF0000]">*This field is required</span>}
-                                <input type="password" placeholder="Password" {...register("password", { required: true })} className="block text-sm py-3 px-4 rounded-lg w-full border outline-purple-500" />
+                                <input type="password" placeholder="Password" {...register("password", { required: true })} className="block text-sm py-3 bg-[#eaeaf0] px-4 rounded-lg w-full border outline-purple-500" />
                                 {errors.password && <span className="text-[#FF0000]">*This field is required</span>}
                             </div>
                             <div className="text-center mt-6">

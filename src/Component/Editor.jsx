@@ -18,7 +18,7 @@ const CodeEditor = () => {
     const [index, setIndex] = useState(0);
 
     const user = useSelector(selectUser);
-
+    const token = document.cookie;
     const handleCodeChange = (newCode) => {
         setValue(newCode);
     };
@@ -58,11 +58,12 @@ const CodeEditor = () => {
 
     return (
         <>
-            {user
-                ? <div className='bg-[#000] h-[100vh] w-[100vw]'>
-                    <div className=''>
-                        <div className=''>
-                            <h2 className='text-white'>Select lang to convert from </h2>
+            {token
+                ?
+                <div className='flex flex-col lg:flex-row pt-[15rem] w-full bg-[#000] border-2 border-blue-400 relative' >
+                    <div className='text-center flex flex-col gap-4'>
+                        <div className='flex gap-4'>
+                            <h2 className='text-white text-xl font-bold'>Select Lang To Convert From </h2>
                             <select onChange={(e) => {
                                 // setting up the value of the language
                                 setFirstlang(e.target.value);
@@ -72,8 +73,8 @@ const CodeEditor = () => {
                                 </option>)}
                             </select>
                         </div>
-                        <div>
-                            <h2 className='text-white'>select lang to convert to </h2>
+                        <div className='flex gap-11'>
+                            <h2 className='text-white text-xl font-bold'>Select Lang To Convert To </h2>
                             <select onChange={(e) => {
                                 // this is written to set the value of the second language
                                 setSecondlang(e.target.value)
@@ -82,10 +83,9 @@ const CodeEditor = () => {
                             </select>
                         </div>
                     </div>
-                    <div>
 
-
-                        <div className='flex'>
+                    <div className='flex flex-col w-[100%] '>
+                        <div>
                             <AceEditor
                                 mode='python'
                                 theme="monokai"
@@ -94,19 +94,17 @@ const CodeEditor = () => {
                                 name="UNIQUE_ID_OF_DIV"
                                 editorProps={{ $blockScrolling: true }}
                             />
-                            <button onClick={getMessage} className='h-[10vw]'>Submit</button>
-                            <AceEditor
-                                mode="javascript"
-                                theme="monokai"
-                                value={message}
-                                name="UNIQUE_ID_OF_DIV"
-                                editorProps={{ $blockScrolling: true }}
-
-                            />
                         </div>
+                        <button onClick={getMessage} className='h-[10vw]'>Submit</button>
+                        <AceEditor
+                            mode="javascript"
+                            theme="monokai"
+                            value={message}
+                            name="UNIQUE_ID_OF_DIV"
+                            editorProps={{ $blockScrolling: true }}
 
+                        />
                     </div>
-
                 </div>
                 : <Please />}
         </>
