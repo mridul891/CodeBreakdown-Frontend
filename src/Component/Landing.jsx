@@ -21,7 +21,7 @@ const Landing = () => {
                 <div>
                     <ul className="flex">
                         <li className="mr-10 font-[poppins] text-black"><Link to="/convert" className="text-black">Convert</Link></li>
-                        <li className="mr-10 font-[poppins]"><Link href="/generate" className="text-black">Generate</Link></li>
+                        <li className="mr-10 font-[poppins]"><Link to="/generate" className="text-black">Generate</Link></li>
                     </ul>
                 </div>
                 <div>
