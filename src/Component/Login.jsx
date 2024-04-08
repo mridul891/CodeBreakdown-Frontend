@@ -135,7 +135,7 @@ export const LoginForm = () => {
                                 {errors.password && <span className="text-[#FF0000]">*This field is required</span>}
                             </div>
                             <div className="text-center mt-6">
-                                <input className="w-full py-2 font-bold text-xl text-white bg-purple-400 rounded-xl hover:bg-purple-500 transition-all" type="submit" value="Login" />
+                                <input disabled={isSubmitting} className="w-full py-2 font-bold text-xl text-white bg-purple-400 rounded-xl hover:bg-purple-500 transition-all" type="submit" value="Login" />
                                 <p className="mt-4 text-sm">Doesn&apos;t Have An Account? <Link to='/signup'>
                                     <span className="underline  cursor-pointer"> Register</span></Link></p>
                             </div>

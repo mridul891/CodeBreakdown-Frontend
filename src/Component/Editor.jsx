@@ -60,8 +60,9 @@ const CodeEditor = () => {
         <>
             {token
                 ?
-                <div className='flex flex-col lg:flex-row pt-[15rem] w-full bg-[#000] border-2 border-blue-400 relative' >
-                    <div className='text-center flex flex-col gap-4'>
+                <div className='flex flex-col lg:h-[100vh] lg:w-[100vw]  w-full bg-[#000] ' >
+                    {/* choosing options div */}
+                    <div className='text-center flex flex-col gap-4 mb-4 lg:items-center'>
                         <div className='flex gap-4'>
                             <h2 className='text-white text-xl font-bold'>Select Lang To Convert From </h2>
                             <select onChange={(e) => {
@@ -83,27 +84,34 @@ const CodeEditor = () => {
                             </select>
                         </div>
                     </div>
+                    {/* CodeEditors div*/}
+                    <div className='flex flex-col gap-6 px-10 lg:flex-row'>
+                        {/* first editor */}
 
-                    <div className='flex flex-col w-[100%] '>
-                        <div>
-                            <AceEditor
-                                mode='python'
-                                theme="monokai"
-                                onChange={handleCodeChange}
-                                value={value}
-                                name="UNIQUE_ID_OF_DIV"
-                                editorProps={{ $blockScrolling: true }}
-                            />
-                        </div>
-                        <button onClick={getMessage} className='h-[10vw]'>Submit</button>
                         <AceEditor
+                            style={{ height: '60vh', width: '80vw' }}
+                            mode='python'
+                            theme="monokai"
+                            onChange={handleCodeChange}
+                            value={value}
+                            name="UNIQUE_ID_OF_DIV"
+                            editorProps={{ $blockScrolling: false }}
+                        />
+
+                        <div className='h-10'>
+                            <button onClick={getMessage} className='h-[10vw] '>Submit</button>
+                        </div>
+                        {/* Second Editor */}
+
+                        <AceEditor
+                            style={{ height: '60vh', width: '80vw' }}
                             mode="javascript"
                             theme="monokai"
                             value={message}
                             name="UNIQUE_ID_OF_DIV"
                             editorProps={{ $blockScrolling: true }}
-
                         />
+
                     </div>
                 </div>
                 : <Please />}
