@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AceEditor from "react-ace";
-// import './constant.js'
+import './constant.js'
 // import 'ace-builds/src-noconflict/mode';
 import "ace-builds/src-noconflict/ext-modelist";
 
@@ -17,10 +17,12 @@ const CodeEditor = () => {
   const [secondlang, setSecondlang] = useState("javascript");
   const [index, setIndex] = useState(0);
 
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
   const token = document.cookie;
   const handleCodeChange = (newCode) => {
+    console.log(newCode)
     setValue(newCode);
+    console.log(value)
   };
 
   const getMessage = async () => {
@@ -41,7 +43,7 @@ const CodeEditor = () => {
         options
       );
       const data = await response.json();
-      console.log(data.choices[0]);
+      console.log(data);
       setMessage(data.choices[0]);
       setIndex((prev) => prev + 1);
       console.log("THe try left is", index);
@@ -51,7 +53,6 @@ const CodeEditor = () => {
       console.log("The try left is", index);
       console.log(error);
     }
-
     console.log(message);
     console.log(index);
   };
