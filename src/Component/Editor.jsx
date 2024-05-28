@@ -1,16 +1,35 @@
 import { useState } from "react";
 import AceEditor from "react-ace";
-import './constant.js'
+// import "./constant.js";
 // import 'ace-builds/src-noconflict/mode';
 import "ace-builds/src-noconflict/ext-modelist";
-
+import modepython from "ace-builds/src-noconflict/mode-python";
+import modejavascript from "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-monokai";
-import { useSelector } from "react-redux";
-import { selectUser } from "@/feature/userSlice";
+
 import Please from "./Please";
+import { config } from "ace-builds";
+import Navbar from "./Navbar";
+config.setModuleUrl("ace/mode/python", modepython);
+config.setModuleUrl("ace/mode/javascript", modejavascript);
+// ace.config.set('basePath', '/node_modules/ace-builds/src-min-noconflict');
 // import Loader from './Loader';
 const CodeEditor = () => {
-  const data = ["c++", "python", "javascript"];
+  const data = [
+    "c++",
+    "python",
+    "javascript",
+    "java",
+    "c",
+    "PHP",
+    "R",
+    "SQL",
+    "Go",
+    "Swift",
+    "Perl",
+    "Ruby",
+    "Rust",
+  ];
   const [message, setMessage] = useState("");
   const [value, setValue] = useState("");
   const [firstlang, setFirstlang] = useState("python");
@@ -20,9 +39,7 @@ const CodeEditor = () => {
   // const user = useSelector(selectUser);
   const token = document.cookie;
   const handleCodeChange = (newCode) => {
-    console.log(newCode)
     setValue(newCode);
-    console.log(value)
   };
 
   const getMessage = async () => {
@@ -43,8 +60,8 @@ const CodeEditor = () => {
         options
       );
       const data = await response.json();
-      console.log(data);
-      setMessage(data.choices[0]);
+      console.log(data.choices[0].message.content);
+      setMessage(data.choices[0].message.content);
       setIndex((prev) => prev + 1);
       console.log("THe try left is", index);
       console.log("response done");
@@ -60,10 +77,13 @@ const CodeEditor = () => {
   return (
     <>
       {token ? (
-        <div className="flex flex-col lg:h-[100vh] lg:w-[100vw]  w-full bg-[#000] ">
+        <div className="flex flex-col py-5 lg:h-[100vh] lg:w-[100vw] lg:py-10 w-full bg-[#000] ">
+          <div>
+            
+          </div>
           {/* choosing options div */}
-          <div className="text-center flex flex-col gap-4 mb-4 lg:items-center">
-            <div className="flex gap-4">
+          <div className="text-center text-white flex flex-col gap-4 mb-4 lg:items-center">
+            <div className="flex gap-2 p-3">
               <h2 className="text-white text-xl font-bold">
                 Select Lang To Convert From{" "}
               </h2>
@@ -78,7 +98,7 @@ const CodeEditor = () => {
                 ))}
               </select>
             </div>
-            <div className="flex gap-11">
+            <div className="flex gap-2 p-3">
               <h2 className="text-white text-xl font-bold">
                 Select Lang To Convert To{" "}
               </h2>
@@ -95,11 +115,11 @@ const CodeEditor = () => {
             </div>
           </div>
           {/* CodeEditors div*/}
-          <div className="flex flex-col gap-6 px-10 lg:flex-row">
+          <div className="flex flex-col gap-6 px-10 lg:flex-row lg:px-20">
             {/* first editor */}
 
             <AceEditor
-              style={{ height: "60vh", width: "80vw" }}
+              style={{ height: "60vh", width: "80vw", fontSize: "25px" }}
               mode="python"
               theme="monokai"
               onChange={handleCodeChange}
@@ -116,8 +136,8 @@ const CodeEditor = () => {
             {/* Second Editor */}
 
             <AceEditor
-              style={{ height: "60vh", width: "80vw" }}
-              mode="javascript"
+              style={{ height: "60vh", width: "80vw", fontSize: "25px" }}
+              mode="python"
               theme="monokai"
               value={message}
               name="UNIQUE_ID_OF_DIV"
