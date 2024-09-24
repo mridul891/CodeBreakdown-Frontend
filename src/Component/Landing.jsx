@@ -9,6 +9,14 @@ const Landing = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
+  setInterval(() => {
+    fetch("https://codebreakdown-backend.onrender.com/") // This calls your backend API
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Handle data
+      })
+      .catch((error) => console.error("Error:", error));
+  }, 10000);
   return (
     <div className="h-[100%] w-[100vw] bg-[#FCF7F2] lg:h-[100vh] flex flex-col ">
       <Navbar />
