@@ -49,22 +49,6 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div>
-        <Link to="/login">
-          <Button className=" py-2 mr-10 text-xl text-white bg-black rounded-xl hover:bg-stone-900 transition-all">
-            {user ? "Logout" : "Login"}
-          </Button>
-        </Link>
-        <Link to="/signup">
-          <Button
-            className={`py-2 mr-10 text-xl text-white bg-black rounded-xl hover:bg-stone-900 transition-all ${
-              user ? "hidden" : ""
-            } `}
-          >
-            Sign in
-          </Button>
-        </Link>
-      </div>
     </nav>
   );
 };

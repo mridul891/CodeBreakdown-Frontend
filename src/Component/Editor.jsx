@@ -76,78 +76,72 @@ const CodeEditor = () => {
 
   return (
     <>
-      {token ? (
-        <div className="flex flex-col py-5 lg:h-[100vh] lg:w-[100vw] lg:py-10 w-full bg-[#000] ">
-          <div>
-            
+      <div className="flex flex-col py-5 lg:h-[100vh] lg:w-[100vw] lg:py-10 w-full bg-[#000] ">
+        <div></div>
+        {/* choosing options div */}
+        <div className="text-center text-white flex flex-col gap-4 mb-4 lg:items-center">
+          <div className="flex gap-2 p-3">
+            <h2 className="text-white text-xl font-bold">
+              Select Lang To Convert From{" "}
+            </h2>
+            <select
+              onChange={(e) => {
+                // setting up the value of the language
+                setFirstlang(e.target.value);
+              }}
+            >
+              {data.map((element, index) => (
+                <option key={index}>{element}</option>
+              ))}
+            </select>
           </div>
-          {/* choosing options div */}
-          <div className="text-center text-white flex flex-col gap-4 mb-4 lg:items-center">
-            <div className="flex gap-2 p-3">
-              <h2 className="text-white text-xl font-bold">
-                Select Lang To Convert From{" "}
-              </h2>
-              <select
-                onChange={(e) => {
-                  // setting up the value of the language
-                  setFirstlang(e.target.value);
-                }}
-              >
-                {data.map((element, index) => (
-                  <option key={index}>{element}</option>
-                ))}
-              </select>
-            </div>
-            <div className="flex gap-2 p-3">
-              <h2 className="text-white text-xl font-bold">
-                Select Lang To Convert To{" "}
-              </h2>
-              <select
-                onChange={(e) => {
-                  // this is written to set the value of the second language
-                  setSecondlang(e.target.value);
-                }}
-              >
-                {data.map((data, index) => (
-                  <option key={index}>{data}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-          {/* CodeEditors div*/}
-          <div className="flex flex-col gap-6 px-10 lg:flex-row lg:px-20">
-            {/* first editor */}
-
-            <AceEditor
-              style={{ height: "60vh", width: "80vw", fontSize: "25px" }}
-              mode="python"
-              theme="monokai"
-              onChange={handleCodeChange}
-              value={value}
-              name="UNIQUE_ID_OF_DIV"
-              editorProps={{ $blockScrolling: false }}
-            />
-
-            <div className="h-10">
-              <button onClick={getMessage} className="h-[10vw] ">
-                Submit
-              </button>
-            </div>
-            {/* Second Editor */}
-
-            <AceEditor
-              style={{ height: "60vh", width: "80vw", fontSize: "25px" }}
-              mode="python"
-              theme="monokai"
-              value={message}
-              name="UNIQUE_ID_OF_DIV"
-              editorProps={{ $blockScrolling: true }}
-            />
+          <div className="flex gap-2 p-3">
+            <h2 className="text-white text-xl font-bold">
+              Select Lang To Convert To{" "}
+            </h2>
+            <select
+              onChange={(e) => {
+                // this is written to set the value of the second language
+                setSecondlang(e.target.value);
+              }}
+            >
+              {data.map((data, index) => (
+                <option key={index}>{data}</option>
+              ))}
+            </select>
           </div>
         </div>
-      ) : (
-        <Please />
-      )}
+        {/* CodeEditors div*/}
+        <div className="flex flex-col gap-6 px-10 lg:flex-row lg:px-20">
+          {/* first editor */}
+
+          <AceEditor
+            style={{ height: "60vh", width: "80vw", fontSize: "25px" }}
+            mode="python"
+            theme="monokai"
+            onChange={handleCodeChange}
+            value={value}
+            name="UNIQUE_ID_OF_DIV"
+            editorProps={{ $blockScrolling: false }}
+          />
+
+          <div className="h-10">
+            <button onClick={getMessage} className="h-[10vw] ">
+              Submit
+            </button>
+          </div>
+          {/* Second Editor */}
+
+          <AceEditor
+            style={{ height: "60vh", width: "80vw", fontSize: "25px" }}
+            mode="python"
+            theme="monokai"
+            value={message}
+            name="UNIQUE_ID_OF_DIV"
+            editorProps={{ $blockScrolling: true }}
+          />
+        </div>
+      </div>
     </>
   );
 };
